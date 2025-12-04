@@ -876,21 +876,21 @@ func (vm *VM) verifyAndRecordInnerBlk(ctx context.Context, blockCtx *block.Conte
 	return nil
 }
 
-// fujiOverridePChainHeightUntilHeight is the P-chain height at which the
+// chennaiOverridePChainHeightUntilHeight is the P-chain height at which the
 // proposervm will no longer attempt to keep the P-chain height the same.
-const fujiOverridePChainHeightUntilHeight = 200041
+const chennaiOverridePChainHeightUntilHeight = 200041
 
-// fujiOverridePChainHeightUntilTimestamp is the timestamp at which the
+// chennaiOverridePChainHeightUntilTimestamp is the timestamp at which the
 // proposervm will no longer attempt to keep the P-chain height the same.
-var fujiOverridePChainHeightUntilTimestamp = time.Date(2025, time.March, 7, 17, 0, 0, 0, time.UTC) // noon ET
+var chennaiOverridePChainHeightUntilTimestamp = time.Date(2025, time.March, 7, 17, 0, 0, 0, time.UTC) // noon ET
 
 func (vm *VM) selectChildPChainHeight(ctx context.Context, minPChainHeight uint64) (uint64, error) {
 	var (
 		now            = vm.Clock.Time()
-		shouldOverride = vm.ctx.NetworkID == constants.FujiID &&
+		shouldOverride = vm.ctx.NetworkID == constants.ChennaiID &&
 			vm.ctx.SubnetID != constants.PrimaryNetworkID &&
-			now.Before(fujiOverridePChainHeightUntilTimestamp) &&
-			minPChainHeight < fujiOverridePChainHeightUntilHeight
+			now.Before(chennaiOverridePChainHeightUntilTimestamp) &&
+			minPChainHeight < chennaiOverridePChainHeightUntilHeight
 	)
 	if shouldOverride {
 		return minPChainHeight, nil

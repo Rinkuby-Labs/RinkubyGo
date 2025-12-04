@@ -15,14 +15,14 @@ import (
 )
 
 var (
-	//go:embed genesis_fuji.json
-	fujiGenesisConfigJSON []byte
+	//go:embed genesis_rinkuby.json
+	rinkubyGenesisConfigJSON []byte
 
-	// FujiParams are the params used for the fuji testnet
-	FujiParams = Params{
+	// MainnetParams are the params used for mainnet
+	RinkubyParams = Params{
 		TxFeeConfig: TxFeeConfig{
-			CreateAssetTxFee: 10 * units.MilliRink,
-			TxFee:            units.MilliRink,
+			CreateAssetTxFee: 10 * units.MilliAvax,
+			TxFee:            units.MilliAvax,
 			DynamicFeeConfig: gas.Config{
 				Weights: gas.Dimensions{
 					gas.Bandwidth: 1,     // Max block size ~1MB
@@ -43,27 +43,27 @@ var (
 			ValidatorFeeConfig: fee.Config{
 				Capacity: 20_000,
 				Target:   10_000,
-				MinPrice: gas.Price(512 * units.NanoRink),
+				MinPrice: gas.Price(512 * units.NanoAvax),
 				// ExcessConversionConstant = (Capacity - Target) * NumberOfSecondsPerDoubling / ln(2)
 				//
 				// ln(2) is a float and the result is consensus critical, so we
 				// hardcode the result.
-				ExcessConversionConstant: 51_937_021, // Double every hour
+				ExcessConversionConstant: 1_246_488_515, // Double every day
 			},
 		},
 		StakingConfig: StakingConfig{
 			UptimeRequirement: .8, // 80%
-			MinValidatorStake: 1 * units.Rink,
-			MaxValidatorStake: 3 * units.MegaRink,
-			MinDelegatorStake: 1 * units.Rink,
+			MinValidatorStake: 2 * units.KiloAvax,
+			MaxValidatorStake: 3 * units.MegaAvax,
+			MinDelegatorStake: 25 * units.Avax,
 			MinDelegationFee:  20000, // 2%
-			MinStakeDuration:  24 * time.Hour,
+			MinStakeDuration:  2 * 7 * 24 * time.Hour,
 			MaxStakeDuration:  365 * 24 * time.Hour,
 			RewardConfig: reward.Config{
 				MaxConsumptionRate: .12 * reward.PercentDenominator,
 				MinConsumptionRate: .10 * reward.PercentDenominator,
 				MintingPeriod:      365 * 24 * time.Hour,
-				SupplyCap:          720 * units.MegaRink,
+				SupplyCap:          5 * units.MegaAvax,
 			},
 		},
 	}

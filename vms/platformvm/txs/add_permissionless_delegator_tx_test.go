@@ -76,7 +76,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 							ID: avaxAssetID,
 						},
 						In: &secp256k1fx.TransferInput{
-							Amt: 2 * units.KiloRink,
+							Amt: 2 * units.KiloAvax,
 							Input: secp256k1fx.Input{
 								SigIndices: []uint32{1},
 							},
@@ -90,7 +90,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 			NodeID: nodeID,
 			Start:  12345,
 			End:    12345 + 200*24*60*60,
-			Wght:   2 * units.KiloRink,
+			Wght:   2 * units.KiloAvax,
 		},
 		Subnet: constants.PrimaryNetworkID,
 		StakeOuts: []*avax.TransferableOutput{
@@ -99,7 +99,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 					ID: avaxAssetID,
 				},
 				Out: &secp256k1fx.TransferOutput{
-					Amt: 2 * units.KiloRink,
+					Amt: 2 * units.KiloAvax,
 					OutputOwners: secp256k1fx.OutputOwners{
 						Locktime:  0,
 						Threshold: 1,
@@ -286,7 +286,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 							ID: avaxAssetID,
 						},
 						In: &secp256k1fx.TransferInput{
-							Amt: units.MegaRink,
+							Amt: units.MegaAvax,
 							Input: secp256k1fx.Input{
 								SigIndices: []uint32{2, 5},
 							},
@@ -333,7 +333,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 			NodeID: nodeID,
 			Start:  12345,
 			End:    12345 + 200*24*60*60,
-			Wght:   5 * units.KiloRink,
+			Wght:   5 * units.KiloAvax,
 		},
 		Subnet: constants.PrimaryNetworkID,
 		StakeOuts: []*avax.TransferableOutput{
@@ -342,7 +342,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 					ID: avaxAssetID,
 				},
 				Out: &secp256k1fx.TransferOutput{
-					Amt: 2 * units.KiloRink,
+					Amt: 2 * units.KiloAvax,
 					OutputOwners: secp256k1fx.OutputOwners{
 						Locktime:  0,
 						Threshold: 1,
@@ -359,7 +359,7 @@ func TestAddPermissionlessPrimaryDelegatorSerialization(t *testing.T) {
 				Out: &stakeable.LockOut{
 					Locktime: 987654321,
 					TransferableOut: &secp256k1fx.TransferOutput{
-						Amt: 3 * units.KiloRink,
+						Amt: 3 * units.KiloAvax,
 						OutputOwners: secp256k1fx.OutputOwners{
 							Locktime:  87654321,
 							Threshold: 0,
@@ -796,7 +796,7 @@ func TestAddPermissionlessSubnetDelegatorSerialization(t *testing.T) {
 							ID: avaxAssetID,
 						},
 						In: &secp256k1fx.TransferInput{
-							Amt: units.MilliRink,
+							Amt: units.MilliAvax,
 							Input: secp256k1fx.Input{
 								SigIndices: []uint32{1},
 							},
@@ -893,7 +893,7 @@ func TestAddPermissionlessSubnetDelegatorSerialization(t *testing.T) {
 		0x25, 0x91, 0xb2, 0x30, 0x27, 0xa8, 0x7d, 0xff,
 		// secp256k1fx transfer input type ID
 		0x00, 0x00, 0x00, 0x05,
-		// Amount = 1 MilliRink
+		// Amount = 1 MilliAvax
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x0f, 0x42, 0x40,
 		// Number of input signature indices
 		0x00, 0x00, 0x00, 0x01,
@@ -1042,7 +1042,7 @@ func TestAddPermissionlessSubnetDelegatorSerialization(t *testing.T) {
 							ID: avaxAssetID,
 						},
 						In: &secp256k1fx.TransferInput{
-							Amt: units.MegaRink,
+							Amt: units.MegaAvax,
 							Input: secp256k1fx.Input{
 								SigIndices: []uint32{2, 5},
 							},

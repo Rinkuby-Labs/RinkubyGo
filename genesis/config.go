@@ -1,6 +1,8 @@
 // Copyright (C) 2019-2025, Ava Labs, Inc. All rights reserved.
 // See the file LICENSE for licensing terms.
 
+// Copyright…
+
 package genesis
 
 import (
@@ -85,7 +87,6 @@ func (s Staker) Unparse(networkID uint32) (UnparsedStaker, error) {
 	}, err
 }
 
-// Config contains the genesis addresses used to construct a genesis
 type Config struct {
 	NetworkID uint32 `json:"networkID"`
 
@@ -162,43 +163,33 @@ func (c *Config) InitialSupply() (uint64, error) {
 }
 
 var (
-	// MainnetConfig is the config that should be used to generate the mainnet
-	// genesis.
-	MainnetConfig Config
+	RinkubyConfig Config
+	ChennaiConfig Config
+	LocalConfig   Config
 
-	// FujiConfig is the config that should be used to generate the fuji
-	// genesis.
-	FujiConfig Config
-
-	// LocalConfig is the config that should be used to generate a local
-	// genesis.
-	LocalConfig Config
-
-	// unmodifiedLocalConfig is the LocalConfig before advancing the StartTime
-	// to a recent value.
 	unmodifiedLocalConfig Config
 )
 
 func init() {
-	unparsedMainnetConfig := UnparsedConfig{}
-	unparsedFujiConfig := UnparsedConfig{}
+	unparsedRinkubyConfig := UnparsedConfig{}
+	unparsedChennaiConfig := UnparsedConfig{}
 	unparsedLocalConfig := UnparsedConfig{}
 
 	err := errors.Join(
-		json.Unmarshal(mainnetGenesisConfigJSON, &unparsedMainnetConfig),
-		json.Unmarshal(fujiGenesisConfigJSON, &unparsedFujiConfig),
+		json.Unmarshal(rinkubyGenesisConfigJSON, &unparsedRinkubyConfig),
+		json.Unmarshal(chennaiGenesisConfigJSON, &unparsedChennaiConfig),
 		json.Unmarshal(localGenesisConfigJSON, &unparsedLocalConfig),
 	)
 	if err != nil {
 		panic(err)
 	}
 
-	MainnetConfig, err = unparsedMainnetConfig.Parse()
+	ChennaiConfig, err = unparsedChennaiConfig.Parse()
 	if err != nil {
 		panic(err)
 	}
 
-	FujiConfig, err = unparsedFujiConfig.Parse()
+	RinkubyConfig, err = unparsedRinkubyConfig.Parse()
 	if err != nil {
 		panic(err)
 	}
@@ -208,7 +199,6 @@ func init() {
 		panic(err)
 	}
 
-	// Renew the staking start time of the local config if required
 	definedStartTime := time.Unix(int64(unmodifiedLocalConfig.StartTime), 0)
 	recentStartTime := getRecentStartTime(
 		definedStartTime,
@@ -222,10 +212,10 @@ func init() {
 
 func GetConfig(networkID uint32) *Config {
 	switch networkID {
-	case constants.MainnetID:
-		return &MainnetConfig
-	case constants.FujiID:
-		return &FujiConfig
+	case constants.RinkubyID:
+		return &RinkubyConfig
+	case constants.ChennaiID:
+		return &ChennaiConfig
 	case constants.LocalID:
 		return &LocalConfig
 	default:
@@ -235,7 +225,6 @@ func GetConfig(networkID uint32) *Config {
 	}
 }
 
-// GetConfigFile loads a *Config from a provided filepath.
 func GetConfigFile(fp string) (*Config, error) {
 	bytes, err := os.ReadFile(filepath.Clean(fp))
 	if err != nil {
@@ -244,7 +233,6 @@ func GetConfigFile(fp string) (*Config, error) {
 	return parseGenesisJSONBytesToConfig(bytes)
 }
 
-// GetConfigContent loads a *Config from a provided environment variable
 func GetConfigContent(genesisContent string) (*Config, error) {
 	bytes, err := base64.StdEncoding.DecodeString(genesisContent)
 	if err != nil {
@@ -266,8 +254,6 @@ func parseGenesisJSONBytesToConfig(bytes []byte) (*Config, error) {
 	return &config, nil
 }
 
-// getRecentStartTime advances [definedStartTime] in chunks of [period]. It
-// returns the latest startTime that isn't after [now].
 func getRecentStartTime(
 	definedStartTime time.Time,
 	now time.Time,

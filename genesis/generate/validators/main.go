@@ -20,19 +20,19 @@ import (
 func main() {
 	ctx := context.Background()
 
-	fujiValidators, err := getCurrentValidators(ctx, primary.FujiAPIURI)
+	chennaiValidators, err := getCurrentValidators(ctx, primary.ChennaiAPIURI)
 	if err != nil {
 		log.Fatalf("failed to fetch Fuji validators: %v", err)
 	}
 
-	mainnetValidators, err := getCurrentValidators(ctx, primary.MainnetAPIURI)
+	rinkubyValidators, err := getCurrentValidators(ctx, primary.RinkubyAPIURI)
 	if err != nil {
 		log.Fatalf("failed to fetch Mainnet validators: %v", err)
 	}
 
 	validators := map[string]set.Set[ids.NodeID]{
-		constants.FujiName:    fujiValidators,
-		constants.MainnetName: mainnetValidators,
+		constants.ChennaiName: chennaiValidators,
+		constants.RinkubyName: rinkubyValidators,
 	}
 	validatorsJSON, err := json.MarshalIndent(validators, "", "\t")
 	if err != nil {

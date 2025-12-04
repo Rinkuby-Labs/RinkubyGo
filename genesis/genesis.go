@@ -224,7 +224,7 @@ func validateConfig(networkID uint32, config *Config, stakingCfg *StakingConfig)
 //  2. The asset ID of AVAX
 func FromFile(networkID uint32, filepath string, stakingCfg *StakingConfig) ([]byte, ids.ID, error) {
 	switch networkID {
-	case constants.MainnetID, constants.TestnetID, constants.LocalID:
+	case constants.RinkubyID, constants.ChennaiID, constants.LocalID:
 		return nil, ids.Empty, fmt.Errorf(
 			"%w: %s",
 			errOverridesStandardNetworkConfig,
@@ -266,7 +266,7 @@ func FromFile(networkID uint32, filepath string, stakingCfg *StakingConfig) ([]b
 //  2. The asset ID of AVAX
 func FromFlag(networkID uint32, genesisContent string, stakingCfg *StakingConfig) ([]byte, ids.ID, error) {
 	switch networkID {
-	case constants.MainnetID, constants.TestnetID, constants.LocalID:
+	case constants.RinkubyID, constants.ChennaiID, constants.LocalID:
 		return nil, ids.Empty, fmt.Errorf(
 			"%w: %s",
 			errOverridesStandardNetworkConfig,
@@ -296,8 +296,8 @@ func FromConfig(config *Config) ([]byte, ids.ID, error) {
 
 	// Specify the genesis state of the AVM
 	avax := avm.AssetDefinition{
-		Name:         "Avalanche",
-		Symbol:       "AVAX",
+		Name:         "Rinkuby",
+		Symbol:       "RINK",
 		Denomination: 9,
 		InitialState: avm.AssetInitialState{},
 	}
@@ -327,7 +327,7 @@ func FromConfig(config *Config) ([]byte, ids.ID, error) {
 	avmGenesis, err := avm.NewGenesis(
 		config.NetworkID,
 		map[string]avm.AssetDefinition{
-			"AVAX": avax, // The AVM starts out with one asset: AVAX
+			"RINK": avax, // The AVM starts out with one asset: RINK
 		},
 	)
 	if err != nil {

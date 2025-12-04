@@ -2664,7 +2664,7 @@ func TestTimestampMetrics(t *testing.T) {
 }
 
 func TestSelectChildPChainHeight(t *testing.T) {
-	beforeOverrideEnds := fujiOverridePChainHeightUntilTimestamp.Add(-time.Minute)
+	beforeOverrideEnds := chennaiOverridePChainHeightUntilTimestamp.Add(-time.Minute)
 	for _, test := range []struct {
 		name                 string
 		time                 time.Time
@@ -2679,45 +2679,45 @@ func TestSelectChildPChainHeight(t *testing.T) {
 			time:                 beforeOverrideEnds,
 			networkID:            constants.MainnetID,
 			subnetID:             ids.GenerateTestID(),
-			currentPChainHeight:  fujiOverridePChainHeightUntilHeight + 2,
-			minPChainHeight:      fujiOverridePChainHeightUntilHeight - 5,
-			expectedPChainHeight: fujiOverridePChainHeightUntilHeight + 2,
+			currentPChainHeight:  chennaiOverridePChainHeightUntilHeight + 2,
+			minPChainHeight:      chennaiOverridePChainHeightUntilHeight - 5,
+			expectedPChainHeight: chennaiOverridePChainHeightUntilHeight + 2,
 		},
 		{
 			name:                 "no override - primary network",
 			time:                 beforeOverrideEnds,
 			networkID:            constants.FujiID,
 			subnetID:             constants.PrimaryNetworkID,
-			currentPChainHeight:  fujiOverridePChainHeightUntilHeight + 2,
-			minPChainHeight:      fujiOverridePChainHeightUntilHeight - 5,
-			expectedPChainHeight: fujiOverridePChainHeightUntilHeight + 2,
+			currentPChainHeight:  chennaiOverridePChainHeightUntilHeight + 2,
+			minPChainHeight:      chennaiOverridePChainHeightUntilHeight - 5,
+			expectedPChainHeight: chennaiOverridePChainHeightUntilHeight + 2,
 		},
 		{
 			name:                 "no override - expired network",
-			time:                 fujiOverridePChainHeightUntilTimestamp,
+			time:                 chennaiOverridePChainHeightUntilTimestamp,
 			networkID:            constants.FujiID,
 			subnetID:             ids.GenerateTestID(),
-			currentPChainHeight:  fujiOverridePChainHeightUntilHeight + 2,
-			minPChainHeight:      fujiOverridePChainHeightUntilHeight - 5,
-			expectedPChainHeight: fujiOverridePChainHeightUntilHeight + 2,
+			currentPChainHeight:  chennaiOverridePChainHeightUntilHeight + 2,
+			minPChainHeight:      chennaiOverridePChainHeightUntilHeight - 5,
+			expectedPChainHeight: chennaiOverridePChainHeightUntilHeight + 2,
 		},
 		{
 			name:                 "no override - chain previously advanced",
 			time:                 beforeOverrideEnds,
 			networkID:            constants.FujiID,
 			subnetID:             ids.GenerateTestID(),
-			currentPChainHeight:  fujiOverridePChainHeightUntilHeight + 2,
-			minPChainHeight:      fujiOverridePChainHeightUntilHeight + 1,
-			expectedPChainHeight: fujiOverridePChainHeightUntilHeight + 2,
+			currentPChainHeight:  chennaiOverridePChainHeightUntilHeight + 2,
+			minPChainHeight:      chennaiOverridePChainHeightUntilHeight + 1,
+			expectedPChainHeight: chennaiOverridePChainHeightUntilHeight + 2,
 		},
 		{
 			name:                 "override",
 			time:                 beforeOverrideEnds,
 			networkID:            constants.FujiID,
 			subnetID:             ids.GenerateTestID(),
-			currentPChainHeight:  fujiOverridePChainHeightUntilHeight + 2,
-			minPChainHeight:      fujiOverridePChainHeightUntilHeight - 5,
-			expectedPChainHeight: fujiOverridePChainHeightUntilHeight - 5,
+			currentPChainHeight:  chennaiOverridePChainHeightUntilHeight + 2,
+			minPChainHeight:      chennaiOverridePChainHeightUntilHeight - 5,
+			expectedPChainHeight: chennaiOverridePChainHeightUntilHeight - 5,
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {

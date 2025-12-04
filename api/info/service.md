@@ -207,7 +207,7 @@ curl -X POST --data '{
 }
 ```
 
-Network ID of 1 = Mainnet Network ID of 5 = Fuji (testnet)
+Network ID of 90059 = Rinkuby Mainnet Network ID of 2099 = Chennai (testnet)
 
 ### `info.getNetworkName`
 

@@ -99,7 +99,7 @@ func main() {
 				ID: avaxAssetID,
 			},
 			Out: &secp256k1fx.TransferOutput{
-				Amt: 100 * units.KiloRink,
+				Amt: 100 * units.KiloAvax,
 				OutputOwners: secp256k1fx.OutputOwners{
 					Threshold: 1,
 					Addrs: []ids.ShortID{
@@ -502,7 +502,7 @@ func (w *workload) issueXToPTransfer(ctx context.Context) {
 		avaxAssetID   = xContext.AVAXAssetID
 		avaxBalance   = balances[avaxAssetID]
 		xBaseTxFee    = xContext.BaseTxFee
-		neededBalance = xBaseTxFee + units.Rink
+		neededBalance = xBaseTxFee + units.Avax
 	)
 	if avaxBalance < neededBalance {
 		w.log.Info("skipping X-chain tx issuance due to insufficient balance",
@@ -523,7 +523,7 @@ func (w *workload) issueXToPTransfer(ctx context.Context) {
 				ID: avaxAssetID,
 			},
 			Out: &secp256k1fx.TransferOutput{
-				Amt: units.Rink,
+				Amt: units.Avax,
 			},
 		}},
 	)

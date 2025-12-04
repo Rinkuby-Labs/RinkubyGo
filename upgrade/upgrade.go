@@ -82,7 +82,7 @@ var (
 		FortunaTime:                  InitiallyActiveTime,
 		GraniteTime:                  InitiallyActiveTime,
 		GraniteEpochDuration:         30 * time.Second,
-		HeliconTime:                  UnscheduledActivationTime,
+		HeliconTime:                  InitiallyActiveTime,
 	}
 
 	ErrInvalidUpgradeTimes = errors.New("invalid upgrade configuration")
@@ -203,10 +203,14 @@ func (c *Config) IsHeliconActivated(t time.Time) bool {
 
 func GetConfig(networkID uint32) Config {
 	switch networkID {
-	case constants.MainnetID:
-		return Mainnet
+	case constants.RinkubyID:
+		return Default
+	case constants.ChennaiID:
+		return Default
 	case constants.FujiID:
 		return Fuji
+	case constants.MainnetID:
+		return Mainnet
 	default:
 		return Default
 	}

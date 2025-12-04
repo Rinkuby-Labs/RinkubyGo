@@ -36,32 +36,32 @@ import (
 var (
 	errNoChainProvided = errors.New("argument 'chain' not given")
 
-	mainnetGetTxFeeResponse = GetTxFeeResponse{
-		CreateSubnetTxFee:             json.Uint64(1 * units.Rink),
-		TransformSubnetTxFee:          json.Uint64(10 * units.Rink),
-		CreateBlockchainTxFee:         json.Uint64(1 * units.Rink),
+	rinkubyGetTxFeeResponse = GetTxFeeResponse{
+		CreateSubnetTxFee:             json.Uint64(1 * units.Avax),
+		TransformSubnetTxFee:          json.Uint64(10 * units.Avax),
+		CreateBlockchainTxFee:         json.Uint64(1 * units.Avax),
 		AddPrimaryNetworkValidatorFee: json.Uint64(0),
 		AddPrimaryNetworkDelegatorFee: json.Uint64(0),
-		AddSubnetValidatorFee:         json.Uint64(units.MilliRink),
-		AddSubnetDelegatorFee:         json.Uint64(units.MilliRink),
+		AddSubnetValidatorFee:         json.Uint64(units.MilliAvax),
+		AddSubnetDelegatorFee:         json.Uint64(units.MilliAvax),
 	}
-	fujiGetTxFeeResponse = GetTxFeeResponse{
-		CreateSubnetTxFee:             json.Uint64(100 * units.MilliRink),
-		TransformSubnetTxFee:          json.Uint64(1 * units.Rink),
-		CreateBlockchainTxFee:         json.Uint64(100 * units.MilliRink),
+	chennaiGetTxFeeResponse = GetTxFeeResponse{
+		CreateSubnetTxFee:             json.Uint64(100 * units.MilliAvax),
+		TransformSubnetTxFee:          json.Uint64(1 * units.Avax),
+		CreateBlockchainTxFee:         json.Uint64(100 * units.MilliAvax),
 		AddPrimaryNetworkValidatorFee: json.Uint64(0),
 		AddPrimaryNetworkDelegatorFee: json.Uint64(0),
-		AddSubnetValidatorFee:         json.Uint64(units.MilliRink),
-		AddSubnetDelegatorFee:         json.Uint64(units.MilliRink),
+		AddSubnetValidatorFee:         json.Uint64(units.MilliAvax),
+		AddSubnetDelegatorFee:         json.Uint64(units.MilliAvax),
 	}
 	defaultGetTxFeeResponse = GetTxFeeResponse{
-		CreateSubnetTxFee:             json.Uint64(100 * units.MilliRink),
-		TransformSubnetTxFee:          json.Uint64(100 * units.MilliRink),
-		CreateBlockchainTxFee:         json.Uint64(100 * units.MilliRink),
+		CreateSubnetTxFee:             json.Uint64(100 * units.MilliAvax),
+		TransformSubnetTxFee:          json.Uint64(100 * units.MilliAvax),
+		CreateBlockchainTxFee:         json.Uint64(100 * units.MilliAvax),
 		AddPrimaryNetworkValidatorFee: json.Uint64(0),
 		AddPrimaryNetworkDelegatorFee: json.Uint64(0),
-		AddSubnetValidatorFee:         json.Uint64(units.MilliRink),
-		AddSubnetDelegatorFee:         json.Uint64(units.MilliRink),
+		AddSubnetValidatorFee:         json.Uint64(units.MilliAvax),
+		AddSubnetDelegatorFee:         json.Uint64(units.MilliAvax),
 	}
 )
 
@@ -440,10 +440,10 @@ func (i *Info) GetTxFee(_ *http.Request, _ *struct{}, reply *GetTxFeeResponse) e
 	)
 
 	switch i.NetworkID {
-	case constants.MainnetID:
-		*reply = mainnetGetTxFeeResponse
-	case constants.FujiID:
-		*reply = fujiGetTxFeeResponse
+	case constants.RinkubyID:
+		*reply = rinkubyGetTxFeeResponse
+	case constants.ChennaiID:
+		*reply = chennaiGetTxFeeResponse
 	default:
 		*reply = defaultGetTxFeeResponse
 	}

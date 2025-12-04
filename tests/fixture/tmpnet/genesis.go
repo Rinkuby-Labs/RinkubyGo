@@ -27,7 +27,7 @@ const (
 	defaultGasLimit = uint64(100_000_000) // Gas limit is arbitrary
 
 	// Arbitrarily large amount of AVAX to fund keys on the X-Chain for testing
-	defaultFundedKeyXChainAmount = 30 * units.MegaRink
+	defaultFundedKeyXChainAmount = 30 * units.MegaAvax
 )
 
 var (
@@ -52,7 +52,7 @@ func NewTestGenesis(
 ) (*genesis.UnparsedConfig, error) {
 	// Validate inputs
 	switch networkID {
-	case constants.TestnetID, constants.MainnetID, constants.LocalID:
+	case constants.ChennaiID, constants.RinkubyID, constants.LocalID:
 		return nil, stacktrace.Wrap(errInvalidNetworkIDForGenesis)
 	}
 	if len(nodes) == 0 {
@@ -77,8 +77,8 @@ func NewTestGenesis(
 		return nil, stacktrace.Errorf("failed to format stake address: %w", err)
 	}
 
-	// Ensure the total stake allows a MegaRink per staker
-	totalStake := uint64(len(initialStakers)) * units.MegaRink
+	// Ensure the total stake allows a MegaAvax per staker
+	totalStake := uint64(len(initialStakers)) * units.MegaAvax
 
 	// The eth address is only needed to link pre-mainnet assets. Until that capability
 	// becomes necessary for testing, use a bogus address.
@@ -135,7 +135,7 @@ func NewTestGenesis(
 				InitialAmount: balance,
 				UnlockSchedule: []genesis.LockedAmount{
 					{
-						Amount: 20 * units.MegaRink,
+						Amount: 20 * units.MegaAvax,
 					},
 					{
 						Amount:   totalStake,

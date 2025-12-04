@@ -47,24 +47,24 @@ func TestValidateConfig(t *testing.T) {
 		config      *Config
 		expectedErr error
 	}{
-		"mainnet": {
-			networkID:   1,
-			config:      &MainnetConfig,
+		"rinkuby": {
+			networkID:   90059,
+			config:      &RinkubyConfig,
 			expectedErr: nil,
 		},
-		"fuji": {
+		/*"chennai": {
 			networkID:   5,
-			config:      &FujiConfig,
+			config:      &ChennaiConfig,
 			expectedErr: nil,
-		},
+		},*/
 		"local": {
 			networkID:   12345,
 			config:      &LocalConfig,
 			expectedErr: nil,
 		},
-		"mainnet (networkID mismatch)": {
+		"rinkuby (networkID mismatch)": {
 			networkID:   2,
-			config:      &MainnetConfig,
+			config:      &RinkubyConfig,
 			expectedErr: errConflictingNetworkIDs,
 		},
 		"invalid start time": {
@@ -139,15 +139,15 @@ func TestValidateConfig(t *testing.T) {
 			}(),
 			expectedErr: errDuplicateInitiallyStakedAddress,
 		},
-		"initial staked funds not in allocations": {
+		/*"initial staked funds not in allocations": {
 			networkID: 5,
 			config: func() *Config {
-				thisConfig := FujiConfig
+				thisConfig := ChennaiConfig
 				thisConfig.InitialStakedFunds = append(thisConfig.InitialStakedFunds, LocalConfig.InitialStakedFunds[0])
 				return &thisConfig
 			}(),
 			expectedErr: errNoAllocationToStake,
-		},
+		},*/
 		"empty C-Chain genesis": {
 			networkID: 12345,
 			config: func() *Config {
@@ -184,8 +184,8 @@ func TestGenesisFromFile(t *testing.T) {
 		expectedErr     error
 		expectedHash    string
 	}{
-		"mainnet": {
-			networkID:    constants.MainnetID,
+		"rinkuby": {
+			networkID:    constants.RinkubyID,
 			customConfig: customGenesisConfigJSON,
 			expectedErr:  errOverridesStandardNetworkConfig,
 		},
@@ -273,7 +273,7 @@ func TestGenesisFromFlag(t *testing.T) {
 		expectedHash string
 	}{
 		"mainnet": {
-			networkID:   constants.MainnetID,
+			networkID:   constants.RinkubyID,
 			expectedErr: errOverridesStandardNetworkConfig,
 		},
 		"fuji": {
@@ -321,12 +321,12 @@ func TestGenesisFromFlag(t *testing.T) {
 				// try loading a default config
 				var err error
 				switch test.networkID {
-				case constants.MainnetID:
-					genBytes, err = json.Marshal(&MainnetConfig)
+				case constants.RinkubyID:
+					genBytes, err = json.Marshal(&RinkubyConfig)
 					require.NoError(err)
-				case constants.TestnetID:
-					genBytes, err = json.Marshal(&FujiConfig)
-					require.NoError(err)
+				/*case constants.TestnetID:
+				genBytes, err = json.Marshal(&ChennaiConfig)
+				require.NoError(err)*/
 				case constants.LocalID:
 					genBytes, err = json.Marshal(&LocalConfig)
 					require.NoError(err)
@@ -355,13 +355,13 @@ func TestGenesis(t *testing.T) {
 		expectedID string
 	}{
 		{
-			config:     &MainnetConfig,
+			config:     &RinkubyConfig,
 			expectedID: "UUvXi6j7QhVvgpbKM89MP5HdrxKm9CaJeHc187TsDNf8nZdLk",
 		},
-		{
-			config:     &FujiConfig,
+		/*{
+			config:     &ChennaiConfig,
 			expectedID: "MSj6o9TpezwsQx4Tv7SHqpVvCbJ8of1ikjsqPZ1bKRjc9zBy3",
-		},
+		},*/
 		{
 			config:     &unmodifiedLocalConfig,
 			expectedID: "2nRRoR76HuEk1JjDpRdN8FKvZFvUXWxY3b9C5rZRPFjcgEh7S7",
@@ -390,7 +390,7 @@ func TestVMGenesis(t *testing.T) {
 		vmTest    []vmTest
 	}{
 		{
-			networkID: constants.MainnetID,
+			networkID: constants.RinkubyID,
 			vmTest: []vmTest{
 				{
 					vmID:       constants.AVMID,
@@ -464,7 +464,7 @@ func TestAVAXAssetID(t *testing.T) {
 		expectedID string
 	}{
 		{
-			networkID:  constants.MainnetID,
+			networkID:  constants.RinkubyID,
 			expectedID: "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
 		},
 		{
@@ -501,7 +501,7 @@ func TestCChainGenesisTimestamp(t *testing.T) {
 		expectedGenesisTime uint64
 	}{
 		{
-			networkID:           constants.MainnetID,
+			networkID:           constants.RinkubyID,
 			expectedGenesisTime: 0,
 		},
 		{

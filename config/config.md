@@ -163,7 +163,7 @@ A LevelDB config file must be JSON and may have these keys. Any keys not given w
 
 | Flag | Env Var | Type | Default  | Description |
 |--------|--------|------|----|--------------------|
-| `--genesis-file` | `AVAGO_GENESIS_FILE` | string | - | Path to a JSON file containing the genesis data to use. Ignored when running standard networks (Mainnet, Fuji Testnet), or when `--genesis-file-content` is specified. If not given, uses default genesis data. See the documentation for the genesis JSON format [here](../genesis/README.md) and an example for a local network [here](../genesis/genesis_local.json). |
+| `--genesis-file` | `AVAGO_GENESIS_FILE` | string | - | Path to a JSON file containing the genesis data to use. Ignored when running standard networks (Mainnet,Fuji Testnet), or when `--genesis-file-content` is specified. If not given, uses default genesis data. See the documentation for the genesis JSON format [here](../genesis/README.md) and an example for a local network [here](../genesis/genesis_local.json). |
 | `--genesis-file-content` | `AVAGO_GENESIS_FILE_CONTENT` | string | - | As an alternative to `--genesis-file`, it allows specifying base64 encoded genesis data to use. |
 
 ### HTTP Server
@@ -225,9 +225,9 @@ You can configure your node to continuously run memory/CPU profiles and save the
 
 | Flag | Env Var | Type | Default | Description |
 |--------|--------|------|----|--------------------|
-| `--network-id=mainnet` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to Mainnet (default). |
-| `--network-id=fuji` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to the Fuji test-network. |
-| `--network-id=testnet` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to the current test-network (currently Fuji). |
+| `--network-id=rinkuby` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to Rinkuby (default). |
+| `--network-id=chennai` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to the Chennai test-network. |
+| `--network-id=testnet` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to the current test-network (currently Chennai). |
 | `--network-id=local` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to a local test-network. |
 | `--network-id=network-[id]` | `AVAGO_NETWORK_ID` | string | `mainnet` | Connect to the network with the given ID. `id` must be in the range \[0, 2^32\). |
 
@@ -322,7 +322,7 @@ Sybil protection configuration. These settings affect how the node participates 
 
 | Flag | Env Var | Type | Default | Description |
 |--------|--------|------|----|--------------------|
-| `--sybil-protection-enabled` | `AVAGO_SYBIL_PROTECTION_ENABLED` | boolean | `true` | Avalanche uses Proof of Stake (PoS) as sybil resistance to make it prohibitively expensive to attack the network. If false, sybil resistance is disabled and all peers will be sampled during consensus. Note that this can not be disabled on public networks (`Fuji` and `Mainnet`). Setting this flag to `false` **does not** mean "this node is not a validator." It means that this node will sample all nodes, not just validators. **You should not set this flag to false unless you understand what you are doing.** |
+| `--sybil-protection-enabled` | `AVAGO_SYBIL_PROTECTION_ENABLED` | boolean | `true` | Rinkuby uses Proof of Stake (PoS) as sybil resistance to make it prohibitively expensive to attack the network. If false, sybil resistance is disabled and all peers will be sampled during consensus. Note that this can not be disabled on public networks (`Chennai` and `Mainnet`). Setting this flag to `false` **does not** mean "this node is not a validator." It means that this node will sample all nodes, not just validators. **You should not set this flag to false unless you understand what you are doing.** |
 | `--sybil-protection-disabled-weight` | `AVAGO_SYBIL_PROTECTION_DISABLED_WEIGHT` | uint | `100` | Weight to provide to each peer when staking is disabled. |
 
 ### Benchlist
@@ -338,7 +338,7 @@ Peer benchlisting configuration.
 ### Consensus Parameters
 
 :::note
-Some of these parameters can only be set on a local or private network, not on Fuji Testnet or Mainnet
+Some of these parameters can only be set on a local or private network, not on Chennai Testnet or Rinkuby Mainnet
 :::
 
 | Flag | Env Var | Type | Default | Description |

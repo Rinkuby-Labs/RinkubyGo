@@ -1,0 +1,48 @@
+{
+  "networkID": 2099,
+  "allocations": [
+    {
+      "ethAddr": "0x9eacc7d6834153fde6d2accce175b04a688f1284",
+      "avaxAddr": "X-chennai1vf6j8juz9yxzvt5aknd3t2r59rw3e95de4zhf9",
+      "initialAmount": 1666666666666666
+    },
+    {
+      "ethAddr": "0x789b6074f202209c3e4702020f3a989006e789be",
+      "avaxAddr": "X-chennai1f2y0h9dglc050vnrq3v9vx9sjtgpvncvsgn789",
+      "initialAmount": 666666666666666,
+      "unlockSchedule": [
+        {
+          "amount": 1000000000000000,
+          "locktime": 1795986000
+        }
+      ]
+    },
+    {
+      "ethAddr": "0x689359fccd0ac17f1b557d5b293e0c6cc585b661",
+      "avaxAddr": "X-chennai188ct2dg7dql8yzz4c66l2hu3yycla77dxkdk28",
+      "initialAmount": 1666666666666666
+    }
+  ],
+
+  "startTime": 1764450000,
+  "initialStakeDuration": 31536000,
+  "initialStakeDurationOffset": 0,
+
+  "initialStakedFunds": [
+    "X-chennai1f2y0h9dglc050vnrq3v9vx9sjtgpvncvsgn789"
+  ],
+
+  "initialStakers": [
+    {
+      "nodeID": "NodeID-8VtjjjXwyAVUzSxi4Vy9o7rHbJTn3BRrq",
+      "rewardAddress": "X-chennai1f2y0h9dglc050vnrq3v9vx9sjtgpvncvsgn789",
+      "delegationFee": 200000,
+      "blsPublicKey": "0x810ccb0a541ddf0ebc02df53c619d3ff05ac71e986f242a9e28b2ac5fee6fe7482e86ac5c0fa1fafac6871fbc7d98658",
+      "blsProofOfPossession": "0x8fe6bfcedec721681d9ca8c6559318ffab3ba2174b6e8a7cdd96b44c7c64181923f4a398b595bb631d64ed683a3d7600109c9ee4a531d2096bb138b2ae1a8b60d82c039759fba4a3e214db7417fd6fd05d95b98c44193fd7e1badb4914b236c8"
+    }
+  ],
+
+  "cChainGenesis": "{\"config\":{\"chainId\":2099,\"homesteadBlock\":0,\"daoForkBlock\":0,\"daoForkSupport\":true,\"eip150Block\":0,\"eip150Hash\":\"0x2086799aeebeae135c246c65021c82b4e15a2c451340993aacfd2751886514f0\",\"eip155Block\":0,\"eip158Block\":0,\"byzantiumBlock\":0,\"constantinopleBlock\":0,\"petersburgBlock\":0,\"istanbulBlock\":0,\"muirGlacierBlock\":0},\"nonce\":\"0x0\",\"timestamp\":\"0x0\",\"extraData\":\"0x00\",\"gasLimit\":\"0x5f5e100\",\"difficulty\":\"0x0\",\"mixHash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"coinbase\":\"0x0000000000000000000000000000000000000000\",\"alloc\":{},\"number\":\"0x0\",\"gasUsed\":\"0x0\",\"parentHash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\"}",
+
+  "message": "Chennai Test Network Genesis"
+}

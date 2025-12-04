@@ -56,7 +56,7 @@ func main() {
 	exportTx, err := cWallet.IssueExportTx(
 		constants.PlatformChainID,
 		[]*secp256k1fx.TransferOutput{{
-			Amt:          units.Rink,
+			Amt:          units.Avax,
 			OutputOwners: owner,
 		}},
 	)

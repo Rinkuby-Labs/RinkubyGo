@@ -7,7 +7,7 @@ networks.
 ## Bootstrap testing
 
 Bootstrapping an avalanchego node on a persistent network like
-`mainnet` or `fuji` requires that the version of avalanchego that the
+`rinkuby` or `chennai` requires that the version of rinkubygo that the
 node is running be compatible with the historical data of that
 network. Bootstrapping regularly is a good way of insuring against
 regressions in compatibility.
